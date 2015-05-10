@@ -24,7 +24,8 @@ bag.save = function (x) {
     _attachments: {
       'image.jpg': {
         content_type: 'image/jpeg',
-        data: x.replace(/^data:[^,]*,/, '')
+        data: x.replace(/^data:[^,]*,/, ''),
+        name: 'thing'
       }
     }
   })
@@ -56,8 +57,8 @@ Root = React.createClass({
 
   things: function () {
     return this.props.things.slice(0).sort(function (x, y) {
-      var xn = x.doc.name.toLowerCase()
-      var yn = y.doc.name.toLowerCase()
+      var xn = (x.doc.name || '').toLowerCase()
+      var yn = (y.doc.name || '').toLowerCase()
       if (xn < yn) return -1
       else if (xn > yn) return 1
       else return 0
@@ -70,7 +71,10 @@ Root = React.createClass({
         bag.load(x)
       }
     }, this.things().map(function (x) {
-      return tag('.thing', {}, [
+      return tag('.thing', {
+        className: x.doc.name,
+        'data-id': x.doc._id,
+      }, [
         tag('img', {
           src: 'data:image/jpeg;base64,' + x.doc._attachments['image.jpg'].data
         }),
