@@ -60,9 +60,17 @@ Root = React.createClass({
         bag.load(x)
       }
     }, this.props.things.map(function (x) {
-      return tag('img', {
-        src: 'data:image/jpeg;base64,' + x.doc._attachments['image.jpg'].data
-      })
+      return tag('.thing', {}, [
+        tag('img', {
+          src: 'data:image/jpeg;base64,' + x.doc._attachments['image.jpg'].data
+        }),
+        tag('input', {
+          defaultValue: x.doc.name,
+          onBlur: function (e) {
+            db.put(update(x.doc, { $merge: { name: e.target.value }}))
+          }
+        })
+      ])
     }))
   }
 })

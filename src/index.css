@@ -3,4 +3,12 @@
 :focus { outline: none; }
 html, body, .dropzone { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 .dropzone.active { background: salmon; }
-img { height: 100px; vertical-align: bottom; }
+img { height: 200px; vertical-align: bottom; }
+input { font: 40px futura; }
+.thing { display: inline-block; line-height: 180px; }
+.thing { position: relative; }
+input { display: none; position: absolute; top: 70%; z-index: 1; }
+input { width: 20ex; left: calc(-20ex / 2 + 50%); text-align: center; }
+.thing:hover input { display: inline; }
+input { background: transparent; color: white; }
+input { text-shadow: 0px 0px 3px black; }
