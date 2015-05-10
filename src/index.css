@@ -4,6 +4,7 @@
 html, body, .dropzone { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
 .dropzone.active { background: salmon; }
 img { height: 200px; vertical-align: bottom; }
+img { transform: rotateZ(90deg); }
 input { font: 40px futura; }
 .thing { display: inline-block; line-height: 180px; }
 .thing { position: relative; }
