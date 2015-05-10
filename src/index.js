@@ -54,12 +54,22 @@ Root = React.createClass({
     return { }
   },
 
+  things: function () {
+    return this.props.things.slice(0).sort(function (x, y) {
+      var xn = x.doc.name.toLowerCase()
+      var yn = y.doc.name.toLowerCase()
+      if (xn < yn) return -1
+      else if (xn > yn) return 1
+      else return 0
+    })
+  },
+
   render: function () {
     return tag(Dropzone, {
       onDrop: function (x) {
         bag.load(x)
       }
-    }, this.props.things.map(function (x) {
+    }, this.things().map(function (x) {
       return tag('.thing', {}, [
         tag('img', {
           src: 'data:image/jpeg;base64,' + x.doc._attachments['image.jpg'].data
